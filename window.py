@@ -22,6 +22,7 @@ class Window:
         self.__root = Tk()
         #set root widget title
         self.__root.title('Maze Solver')
+        self.__root.protocol("WM_DELETE_WINDOW", self.close)
         
         #create canvas with root keeping width and height as parameters
         self.__canvas = Canvas(self.__root, width=width, height=height)
@@ -31,7 +32,7 @@ class Window:
         #creates running variable setting it to false
         self.running = False
         
-        self.__root.protocol("WM_DELETE_WINDOW", self.close)
+        
     
     def redraw(self):
         self.__root.update()
@@ -49,6 +50,20 @@ class Window:
     
     def draw_line(self, line, fill_color):
         line.draw(self.__canvas, fill_color)
+        
+        
+class Cell:
+    def __init__(self, has_left_wall=True,
+                    has_right_wall=True,
+                    has_top_wall=True,
+                    has_bottom_wall=True, x1, x2, y1, y2):
+        self._x1 = x1
+        self._x2 = x2
+        self._y1 = y1
+        self._y2 = y2
+        
+    def draw(self):
+        
         
         
     
