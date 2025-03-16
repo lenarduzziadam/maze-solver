@@ -12,9 +12,9 @@ class Window:
         self.__root.title('Maze Solver')
         
         #create canvas with root keeping width and height as parameters
-        canvas = Canvas(self.__root, width=width, height=height)
+        self.__canvas = Canvas(self.__root, width=width, height=height)
         #packs canvas to prepare for drawing
-        canvas.pack()
+        self.__canvas.pack(fill=BOTH, expand=1)
         
         #creates running variable setting it to false
         self.running = False
