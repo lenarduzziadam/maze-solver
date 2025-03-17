@@ -53,16 +53,28 @@ class Window:
         
         
 class Cell:
-    def __init__(self, has_left_wall=True,
-                    has_right_wall=True,
-                    has_top_wall=True,
-                    has_bottom_wall=True, x1, x2, y1, y2):
+    def __init__(self, win, x1, y1, x2, y2, has_left_wall=True, 
+             has_right_wall=True, has_top_wall=True, has_bottom_wall=True):
+        
+        self._win = win
+        
         self._x1 = x1
         self._x2 = x2
         self._y1 = y1
         self._y2 = y2
         
     def draw(self):
+        if self.has_left_wall:
+            self._win.create_line(self._x1, self._y1, self._x1, self._y2)
+            
+        if self.has_top_wall:
+            #draw it
+            self._win.create_line(self._x1, self._y1, self._x2, self._y1)
+        if self.has_bottom_wall:
+            self._win.create_line(self._x1, self._y2, self._x2, self._y2, )
+        if self.has_right_wall:
+            #draw it
+            self.__win.create_line(self._x2, self._y1, self._x2, self._y2)
         
         
         
