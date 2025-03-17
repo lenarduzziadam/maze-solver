@@ -4,14 +4,17 @@ def main():
     win = Window(800, 600)
     
     # Create and draw your test cells
-    cell1 = Cell(win, 50, 50, 150, 150, has_left_wall=False)
+    cell1 = Cell(win, 50, 50, 150, 150)
     cell1.draw()
     
-    cell2 = Cell(win, 200, 200, 300, 150, has_right_wall=False)
+    cell2 = Cell(win, 400, 450, 200, 200)
     cell2.draw()
     
-    cell3 = Cell(win, 75,100, 200, 300)
+    cell3 = Cell(win, 150,150, 420, 300)
     cell3.draw()
+    
+    cell1.draw_move(cell3)        # This should draw a red line from `cell1` to `cell2`
+    cell3.draw_move(cell2, True)  # This should draw a gray line (undo) from `cell2` back to `cell1`
     
     win.wait_for_close()
     
