@@ -63,18 +63,35 @@ class Cell:
         self._y1 = y1
         self._y2 = y2
         
+        self.has_left_wall = has_left_wall
+        self.has_right_wall = has_right_wall  
+        self.has_top_wall = has_top_wall
+        self.has_bottom_wall = has_bottom_wall
+        
     def draw(self):
+        #if statments to check and draw walls if needed
         if self.has_left_wall:
-            self._win.create_line(self._x1, self._y1, self._x1, self._y2)
+            p1 = Point(self._x1, self._y1)
+            p2 = Point(self._x1, self._y2)
+            line = Line(p1, p2)
+            self._win.draw_line(line, "black")
             
         if self.has_top_wall:
-            #draw it
-            self._win.create_line(self._x1, self._y1, self._x2, self._y1)
+            p1 = Point(self._x1, self._y1)
+            p2 = Point(self._x2, self._y1)
+            line = Line(p1, p2)
+            self._win.draw_line(line, "black")
+            
         if self.has_bottom_wall:
-            self._win.create_line(self._x1, self._y2, self._x2, self._y2, )
+            p1 = Point(self._x1, self._y2)
+            p2 = Point(self._x2, self._y2)
+            line = Line(p1, p2)
+            self._win.draw_line(line, "black")
         if self.has_right_wall:
-            #draw it
-            self.__win.create_line(self._x2, self._y1, self._x2, self._y2)
+            p1 = Point(self._x2, self._y1)
+            p2 = Point(self._x2, self._y2)
+            line = Line(p1, p2)
+            self._win.draw_line(line, "black")
         
         
         

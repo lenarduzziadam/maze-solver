@@ -3,22 +3,15 @@ from window import *
 def main():
     win = Window(800, 600)
     
-     # Create some points
-    p1 = Point(100, 100)
-    p2 = Point(200, 200)
-    p3 = Point(300, 100)
-    p4 = Point(420, 150)
-    # Create lines using those points
-    line1 = Line(p1, p2)
-    line2 = Line(p2, p3)
-    line3 = Line(p3, p1)
-    line4 = Line(p1, p4)
+    # Create and draw your test cells
+    cell1 = Cell(win, 50, 50, 150, 150, has_left_wall=False)
+    cell1.draw()
     
-    # Draw the lines with different colors
-    win.draw_line(line1, "red")
-    win.draw_line(line2, "blue")
-    win.draw_line(line3, "green")
-    win.draw_line(line4, "yellow")
+    cell2 = Cell(win, 200, 200, 300, 150, has_right_wall=False)
+    cell2.draw()
+    
+    cell3 = Cell(win, 75,100, 200, 300)
+    cell3.draw()
     
     win.wait_for_close()
     
