@@ -53,3 +53,15 @@ class Maze:
     def _animate(self):
         self.win.redraw(self)
         time.sleep(0.07)
+        
+    def _break_entrance_and_exit(self):
+        entrance = self._cells[0][0]
+        exit = self._cells[-1][-1]
+        
+        entrance.has_top_wall = False
+        print(f"Entrance top wall removed: {entrance.has_top_wall}")
+        exit.has_bottom_wall = False
+        print(f"Exit bottom wall removed: {exit.has_bottom_wall}")
+        
+        entrance.draw()
+        exit.draw()
