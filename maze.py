@@ -65,3 +65,6 @@ class Maze:
         
         entrance.draw()
         exit.draw()
+        
+    
+            

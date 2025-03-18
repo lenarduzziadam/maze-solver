@@ -1,5 +1,5 @@
 from tkinter import Tk, BOTH, Canvas
-import tkinter as tk
+import random
 
 class Point:
     def __init__(self, x, y):
@@ -68,6 +68,8 @@ class Cell:
         self.has_top_wall = has_top_wall
         self.has_bottom_wall = has_bottom_wall
         
+        self.visited = False
+        
     def draw(self):
         #if statments to check and draw walls if needed
         if self.has_left_wall:
@@ -115,5 +117,52 @@ class Cell:
         
 
 
-        
+    def _break_walls_r(self, i, j):
+        current_cell = self._cells[i][j]
+        current_cell.visited = True
+            
+        while True:
+            possible_directions = []
+            
+            # Check north (i-1, j)
+            if i > 0 and not self._cells[i-1][j].visited:
+                possible_directions.append((i-1, j, "north"))
+                
+            # Check south (i+1, j)
+            if i < self._num_rows-1 and not self._cells[i+1][j].visited:
+                possible_directions.append((i+1, j, "south"))
+                
+            # Check west (i, j-1)
+            if j > 0 and not self._cells[i][j-1].visited:
+                possible_directions.append((i, j-1, "west"))
+                
+            # Check east (i, j+1)
+            if j < self._num_cols-1 and not self._cells[i][j+1].visited:
+                possible_directions.append((i, j+1, "east"))
+            
+            # If there are no possible directions, draw and return
+            if len(possible_directions) == 0:
+                current_cell.draw()  # You might already have a draw method
+                return
+
+            
+            # Pick a random direction
+            next_i, next_j, direction = random.choice(possible_directions)
     
+            # Break down the wall between current cell and chosen cell
+            if direction == "north":
+                current_cell.has_top_wall = False
+                self._cells[next_i][next_j].has_bottom_wall = False
+            elif direction == "south":
+                current_cell.has_bottom_wall = False
+                self._cells[next_i][next_j].has_top_wall = False
+            elif direction == "west":
+                current_cell.has_left_wall = False
+                self._cells[next_i][next_j].has_right_wall = False
+                
+            elif direction == "east":
+                current_cell.has_right_wall = False
+                self._cells[next_i][next_j].has_left_wall = False
+                
+            # Recursively call the method on the next cell
+            self._break_walls_r(next_i, next_j)
