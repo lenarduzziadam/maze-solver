@@ -1,7 +1,7 @@
 from window import *
 import time
 class Maze:
-    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win):
+    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win=None):
         self.x1 = x1
         self.y1 = y1
         self.num_rows = num_rows
@@ -9,6 +9,8 @@ class Maze:
         self.cell_size_x = cell_size_x
         self.cell_size_y = cell_size_y
         self.win = win
+        
+        self._create_cells()
         
     def _create_cells(self):
         
@@ -19,10 +21,10 @@ class Maze:
         
         self._cells = []
         
-        for row in range(self.num_rows):
+        for col in range(self.num_cols):  # Outer loop is now for columns
             column = []
-            for col in range(self.num_cols):
-                 # Calculate x1, y1, x2, y2 for the cell
+            for row in range(self.num_rows):  # Inner loop is for rows
+                # Calculate x1, y1, x2, y2 for the cell
                 cell_x1 = self.x1 + (col * self.cell_size_x)
                 cell_y1 = self.y1 + (row * self.cell_size_y)
                 cell_x2 = cell_x1 + self.cell_size_x
@@ -31,9 +33,9 @@ class Maze:
                 # Create a Cell instance
                 cell = Cell(self.win, cell_x1, cell_y1, cell_x2, cell_y2)
 
-                # Add it to the row's list
+                # Add the cell to the column list
                 column.append(cell)
-            self._cells.append(column)  # Add the row to the main cells list
+            self._cells.append(column)  # Add the column to the main list
     
     def _draw_cell(self, i, j):
         # Check if _cells has been initialized
