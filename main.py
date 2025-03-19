@@ -1,20 +1,19 @@
 from window import *
 
+from maze import Maze
+
 def main():
-    win = Window(800, 600)
-    
-    # Create and draw your test cells
-    cell1 = Cell(win, 50, 50, 150, 150)
-    cell1.draw()
-    
-    cell2 = Cell(win, 400, 450, 200, 200)
-    cell2.draw()
-    
-    cell3 = Cell(win, 150,150, 420, 300)
-    cell3.draw()
-    
-    cell1.draw_move(cell3)        # This should draw a red line from `cell1` to `cell2`
-    cell3.draw_move(cell2, True)  # This should draw a gray line (undo) from `cell2` back to `cell1`
+    num_rows = 12
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
+
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win, 10)
+
     
     win.wait_for_close()
     
