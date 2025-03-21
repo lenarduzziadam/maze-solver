@@ -56,7 +56,7 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
-        
+        self.visited = False
         self._x1 = None
         self._y1 = None
         self._x2 = None
@@ -114,5 +114,7 @@ class Cell:
         #creates line for both instances
         line = Line(Point(x_center, y_center), Point(x_center2, y_center2))
         self._win.draw_line(line, fill_color)
+        
+    
 
     
